@@ -1,18 +1,25 @@
-import classes from "./MealItem.module.css";
+import { useContext } from "react";
 
-const MealItem = (props) => {
-  const price = `$${props.price.toFixed(2)}`;
+import CartIcon from "../Cart/CartIcon";
+import CartContext from "../../store/cart-context";
+import classes from "./HeaderCartButton.module.css";
+
+const HeaderCartButton = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
 
   return (
-    <li className={classes.meal}>
-      <div>
-        <h3>{props.name}</h3>
-        <div className={classes.description}>{props.description}</div>
-        <div className={classes.price}>{price}</div>
-      </div>
-      <div></div>
-    </li>
+    <button className={classes.button} onClick={props.onClick}>
+      <span className={classes.icon}>
+        <CartIcon />
+      </span>
+      <span>Your Cart</span>
+      <span className={classes.badge}>{numberOfCartItems}</span>
+    </button>
   );
 };
 
-export default MealItem;
+export default HeaderCartButton;
