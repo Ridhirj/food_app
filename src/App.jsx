@@ -4,7 +4,6 @@ import "./App.css";
 import Header from "./components/Layout/Header";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
-import HeaderCartButton from "./components/Layout/HeaderCartButton";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -23,7 +22,6 @@ function App() {
       <main>
         <Meals />
       </main>
-      <HeaderCartButton />
     </CartProvider>
   );
 }
